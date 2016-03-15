@@ -1,6 +1,6 @@
 {
   "name": "class-private-method-decorator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Private methods in a class using an ES decorator",
   "main": "lib/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "build:clean": "rimraf lib dist",
     "build:js": "babel -d lib/ src/",
     "build": "npm run build:clean && npm run build:js",
-    "postinstall": "npm run build"
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
