@@ -29,6 +29,6 @@ export default function klass(target) {
   return Klass
 }
 
-klass.private = function (target, name, descriptor) {
+klass.private = function (target, name) {
   _privates.push({ target: target.constructor, name })
 }
