@@ -1,5 +1,5 @@
 {
-  "name": "class-decorators",
+  "name": "class-private-method-decorator",
   "version": "1.0.0",
   "description": "Private methods in a class using an ES decorator",
   "main": "lib/index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/elado/class-decorators.git"
+    "url": "git://github.com/elado/class-private-method-decorator.git"
   },
   "author": "Elad Ossadon <elad@ossadon.com> (http://github.com/elado)",
   "license": "MIT",

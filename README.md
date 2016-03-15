@@ -1,19 +1,19 @@
-# class-decorators
+# class-private-method-decorator
 
 > Private methods in a JavaScript ES6 class using an ES7 decorator
 
-[![build status](https://img.shields.io/travis/elado/class-decorators/master.svg?style=flat-square)](https://travis-ci.org/elado/class-decorators) [![npm version](https://img.shields.io/npm/v/class-decorators.svg?style=flat-square)](https://www.npmjs.com/package/class-decorators) [![codeclimate](https://img.shields.io/codeclimate/github/elado/class-decorators.svg?style=flat-square)](https://codeclimate.com/github/elado/class-decorators)
+[![build status](https://img.shields.io/travis/elado/class-private-method-decorator/master.svg?style=flat-square)](https://travis-ci.org/elado/class-private-method-decorator) [![npm version](https://img.shields.io/npm/v/class-private-method-decorator.svg?style=flat-square)](https://www.npmjs.com/package/class-private-method-decorator) [![codeclimate](https://img.shields.io/codeclimate/github/elado/class-private-method-decorator.svg?style=flat-square)](https://codeclimate.com/github/elado/class-private-method-decorator)
 
 ## Installation
 
 ```sh
-npm install class-decorators --save
+npm install class-private-method-decorator --save
 ```
 
 ## Usage
 
 ```js
-import klass from 'class-decorators'
+import klass from 'class-private-method-decorator'
 
 @klass
 class SomeClass {
