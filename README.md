@@ -10,6 +10,8 @@
 npm install class-private-method-decorator --save
 ```
 
+Requires `babel` with `babel-plugin-transform-decorators-legacy` plugin.
+
 ## Usage
 
 ```js
