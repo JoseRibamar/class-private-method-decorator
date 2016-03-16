@@ -4,7 +4,7 @@ export default function klass(target) {
   const proto = target.prototype
   const methodNames = Object.getOwnPropertyNames(proto)
   for (let k in proto) methodNames.push(k)
-  const privatesForTarget = _privates.filter(e => e.target === target).map(e => e.name).reduce((all, k) => { all[k] = k; return all }, {})
+  const privatesForTarget = new Set(_privates.filter(e => e.target === target).map(e => e.name))
 
   function Klass(...args) {
     const instance = new target(...args)
@@ -12,7 +12,7 @@ export default function klass(target) {
     const methodMap = {}
 
     for (let methodName of methodNames) {
-      const isPrivate = methodName in privatesForTarget
+      const isPrivate = privatesForTarget.has(methodName)
       if (isPrivate) continue
 
       const fn = proto[methodName]
