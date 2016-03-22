@@ -15,9 +15,9 @@ Requires `babel` with `babel-plugin-transform-decorators-legacy` plugin.
 ## Usage
 
 ```js
-import klass from 'class-private-method-decorator'
+import { classWithPrivateMethods, privateMethod } from 'class-private-method-decorator'
 
-@klass
+@classWithPrivateMethods
 class SomeClass {
   publicMethod() {
     return 1
@@ -27,7 +27,7 @@ class SomeClass {
     return 2 + this.privateMethod()
   }
 
-  @klass.private
+  @privateMethod
   privateMethod() {
     return 3
   }
@@ -37,6 +37,14 @@ const something = new SomeClass()
 something.publicMethod() // => 1
 something.privateMethod() // => TypeError: something.privateMethod is not a function
 something.publicMethodThatUsesAPrivateMethod() // => 5
+```
+
+### `__origInstance`
+
+The original instance with all the methods can be accessed by `__origInstance` property. Useful for debugging.
+
+```js
+something.__origInstance.privateMethod() // => 3
 ```
 
 ## Test

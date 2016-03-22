@@ -5,3 +5,4 @@ tmp/
 .editorconfig
 README.md
 .travis.yml
+coverage/

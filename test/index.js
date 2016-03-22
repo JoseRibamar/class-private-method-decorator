@@ -1,9 +1,9 @@
 import assert from 'assert'
-import klass from '../src'
+import { classWithPrivateMethods, privateMethod } from '../src'
 
-describe('@klass', function () {
+describe('@classWithPrivateMethods', function () {
   it('leaves all methods as public by default', function () {
-    @klass
+    @classWithPrivateMethods
     class Something {
       public1(text) { return `public1:${text}` }
       public2(text) { return `public2:${text}` }
@@ -15,11 +15,11 @@ describe('@klass', function () {
   })
 
   it('hides private methods', function () {
-    @klass
+    @classWithPrivateMethods
     class Something {
       public1(text) { return `public1:${text}` }
 
-      @klass.private
+      @privateMethod
       private2(text) { return `private2:${text}` }
     }
 
@@ -29,11 +29,11 @@ describe('@klass', function () {
   })
 
   it('can still call private methods in the class', function () {
-    @klass
+    @classWithPrivateMethods
     class Something {
       public1(text) { return `public1:${text}|${this.private2(text)}` }
 
-      @klass.private
+      @privateMethod
       private2(text) { return `private2:${text}` }
     }
 
@@ -42,7 +42,7 @@ describe('@klass', function () {
   })
 
   it('can set a new method by assigning a function, and bind to the instance', function () {
-    @klass
+    @classWithPrivateMethods
     class Something {
       public1(text) { return `public1:${text}` }
       public2(text) { return `public2:${text}` }

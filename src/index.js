@@ -1,6 +1,6 @@
 const _privates = []
 
-export default function klass(target) {
+export function classWithPrivateMethods(target) {
   const proto = target.prototype
   const methodNames = Object.getOwnPropertyNames(proto)
   for (let k in proto) methodNames.push(k)
@@ -21,6 +21,8 @@ export default function klass(target) {
         get() { return methodMap[methodName] || (methodMap[methodName] = fn.bind(instance)) },
         set(newFn) { methodMap[methodName] = newFn.bind(instance); instance[methodName] = newFn }
       }
+
+      newProto.__origInstance = { value: instance }
     }
 
     Object.defineProperties(this, newProto)
@@ -29,6 +31,6 @@ export default function klass(target) {
   return Klass
 }
 
-klass.private = function (target, name) {
+export function privateMethod(target, name) {
   _privates.push({ target: target.constructor, name })
 }
