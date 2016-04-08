@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.0.1] - 2016-04-08
+
+- Made properties `configurable: true`
+
 ## [2.0.0] - 2016-03-22
 ### Added `__origInstance`
 For easier debugging in console, added `__origInstance` to every class with private methods.

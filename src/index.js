@@ -18,6 +18,7 @@ export function classWithPrivateMethods(target) {
       const fn = proto[methodName]
 
       newProto[methodName] = {
+        configurable: true,
         get() { return methodMap[methodName] || (methodMap[methodName] = fn.bind(instance)) },
         set(newFn) { methodMap[methodName] = newFn.bind(instance); instance[methodName] = newFn }
       }
