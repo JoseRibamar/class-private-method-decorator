@@ -67,41 +67,79 @@ describe('@classWithPrivateMethods', function () {
     assert.equal(instance.public2('hello'), 'patched public2|public1:hello')
   })
 
-  it('can call inherited methods', function () {
-    class Base {
-      baseMethod(text) { return `baseMethod:${text}` }
-    }
+  context('inheritance', function () {
+    it('can call inherited methods', function () {
+      class Base {
+        baseMethod(text) { return `baseMethod:${text}` }
+      }
 
-    @classWithPrivateMethods
-    class Something extends Base {
-      public1(text) { return `public1:${text}` }
-    }
+      @classWithPrivateMethods
+      class Something extends Base {
+        public1(text) { return `public1:${text}` }
+      }
 
-    const instance = new Something()
-    assert.equal(instance.baseMethod('hello'), 'baseMethod:hello')
-  })
+      const instance = new Something()
+      assert.equal(instance.baseMethod('hello'), 'baseMethod:hello')
+    })
 
-  it('can call inherited methods from a classWithPrivateMethods base class', function () {
-    @classWithPrivateMethods
-    class Base {
-      basePublic1(text) { return `basePublic1:${text}` }
+    it('can call inherited methods from a classWithPrivateMethods base class', function () {
+      @classWithPrivateMethods
+      class Base {
+        basePublic1(text) { return `basePublic1:${text}` }
 
-      @privateMethod
-      basePrivate2(text) { return `basePrivate2:${text}` }
-    }
+        @privateMethod
+        basePrivate2(text) { return `basePrivate2:${text}` }
+      }
 
-    @classWithPrivateMethods
-    class Something extends Base {
-      public1(text) { return `public1:${text}` }
+      @classWithPrivateMethods
+      class Something extends Base {
+        public1(text) { return `public1:${text}` }
 
-      @privateMethod
-      private2(text) { return `private2:${text}` }
-    }
+        @privateMethod
+        private2(text) { return `private2:${text}` }
+      }
 
-    const instance = new Something()
-    assert.equal(instance.basePublic1('hello'), 'basePublic1:hello')
-    assert.equal(instance.public1('hello'), 'public1:hello')
-    assert(!('private2' in instance))
+      const instance = new Something()
+      assert.equal(instance.basePublic1('hello'), 'basePublic1:hello')
+      assert.equal(instance.public1('hello'), 'public1:hello')
+      assert(!('private2' in instance))
+    })
+
+    it('supports all levels of inheritance', function () {
+      @classWithPrivateMethods
+      class Base {
+        base() { return 'base' }
+      }
+
+      @classWithPrivateMethods
+      class Derived1 extends Base {
+        derived1() { return 'derived1' }
+
+        @privateMethod
+        derived1Private() {}
+      }
+
+      @classWithPrivateMethods
+      class Derived2 extends Derived1 {
+        derived2() { return 'derived2' }
+      }
+
+      @classWithPrivateMethods
+      class Derived3 extends Derived2 {
+        derived3() { return 'derived3' }
+
+        @privateMethod
+        derived3Private() {}
+      }
+
+      const instance = new Derived3()
+      assert.equal(instance.base(), 'base')
+      assert.equal(instance.derived1(), 'derived1')
+      assert(!('derived1Private' in instance))
+      assert.equal(instance.derived2(), 'derived2')
+      assert.equal(instance.derived3(), 'derived3')
+      assert(!('derived3Private' in instance))
+    })
   })
 
   context('altered prototype', function () {

@@ -32,9 +32,9 @@ function hoistPublicMethods(ClassWrapper, target) {
   let methodNames = Object.getOwnPropertyNames(proto)
 
   // add all methods from base class, if any
-  let baseClassPrototype = Object.getPrototypeOf(proto)
+  const baseClassPrototype = Object.getPrototypeOf(proto)
   if (baseClassPrototype !== BASE_OBJECT_PROTOTYPE) {
-    methodNames = methodNames.concat(Object.getOwnPropertyNames(Object.getPrototypeOf(proto)))
+    methodNames = methodNames.concat(Object.getOwnPropertyNames(baseClassPrototype))
   }
 
   methodNames = methodNames.filter(m => m !== 'constructor')
