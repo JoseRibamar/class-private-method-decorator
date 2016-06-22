@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.1.0] - 2016-06-22
+
+- Better handling of bound methods
+- Support static methods and properties
+- Support for prototype altering after class definition
+
 ## [2.0.1] - 2016-04-08
 
 - Made properties `configurable: true`
