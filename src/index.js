@@ -46,8 +46,10 @@ function hoistPublicMethods(ClassWrapper, target) {
     .forEach(methodName => addBoundMethod(ClassWrapper.prototype, methodName, proto))
 }
 
+const NATIVE_STATICS = 'length,name,prototype,__proto__,arguments,caller'.split(',')
+
 function hoistStaticMethods(ClassWrapper, target) {
-  const statics = Object.getOwnPropertyNames(target).filter(k => k !== 'length' && k !== 'name' && k !== 'prototype')
+  const statics = Object.getOwnPropertyNames(target).filter(k => NATIVE_STATICS.indexOf(k) === -1)
 
   // static methods - bind methods to original class
   statics
