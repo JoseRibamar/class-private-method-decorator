@@ -1,6 +1,6 @@
 {
   "name": "class-private-method-decorator",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Private methods in a class using an ES decorator",
   "main": "lib/index.js",
   "scripts": {

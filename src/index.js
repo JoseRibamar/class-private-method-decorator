@@ -18,7 +18,6 @@ export function classWithPrivateMethods(target) {
   hoistStaticMethods(ClassWrapper, target)
 
   Object.defineProperties(ClassWrapper, {
-    name: { value: `ClassWithPrivateMethodsWrapper(${target.name})` },
     __origClass: { value: target, enumerable: false, configurable: true },
     __origInstance: { value: target, enumerable: false, configurable: true },
     __classWithPrivateMethodsMethodMap: { value: {} }
